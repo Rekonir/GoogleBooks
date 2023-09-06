@@ -1,22 +1,44 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Card from '../../components/Card/Card.tsx';
 import styles from './MainPage.module.scss'
 import axios from 'axios';
-import { API_KEY } from '../../constants.ts'
+import { API_KEY, cardPerPage } from '../../constants.ts'
 import { IBook } from '../../types/types.ts';
 
 const MainPage = () => {
     const [search, setSearch] = useState("")
-    const [booksData, setBooksData] = useState([])
-    const searchBook = (e: React.KeyboardEvent) => {
-        const url = `https://www.googleapis.com/books/v1/volumes?q=${search}&key=${API_KEY}`
-        if (e.key === "Enter") {
-            axios.get(url)
-                .then(res => setBooksData(res.data.items))
-                // .then(res=>console.log(res.data.items))
-                .catch(err => console.log(err))
-        }
+    const [booksData, setBooksData] = useState<Array<IBook>>([])
+    const [curentBook, setCurentBook] = useState(0)
 
+    useEffect(() => {
+        setCurentBook(booksData.length)
+    }, [booksData])
+    
+    
+    const nextBook = () => {
+        const url = `https://www.googleapis.com/books/v1/volumes?q=${search}&key=${API_KEY}&maxResults=${cardPerPage}&startIndex=${curentBook}`;
+        axios
+            .get(url)
+            .then(res => setBooksData(booksData.concat(res.data.items)))
+            // .then(res => console.log(booksData.concat(res.data)))
+
+            .catch(err => console.log(err));
+    };
+
+    const fetchData = () => {
+        setBooksData([])
+        const url = `https://www.googleapis.com/books/v1/volumes?q=${search}&key=${API_KEY}&maxResults=${cardPerPage}&startIndex=0`
+        axios.get(url)
+            .then(res => setBooksData(res.data.items))
+            // .then(res => console.log(booksData.concat(res.data)))
+
+            .catch(err => console.log(err))
+
+    }
+    const searchBook = (e: React.KeyboardEvent) => {
+        if (e.key === "Enter") {
+            fetchData()
+        }
     }
 
     return (
@@ -32,19 +54,22 @@ const MainPage = () => {
                         onChange={e => setSearch(e.target.value)}
                         onKeyDown={searchBook}
                     />
-                    <button>
+                    <button className={styles.searchBtn} onClick={fetchData}>
                         <img src="../../src/assets/imgs/search-svgrepo-com.svg" alt="" className={styles.searchIcon} />
                     </button>
                 </div>
             </div>
             <div className={styles.catalog}>
-                {booksData.map((book:IBook) => {
+                {booksData.map((book: IBook) => {
                     return (
-                        <Card book={book} key={book.id}/>
+                        <Card book={book} key={book.id} />
                     )
                 })
                 }
             </div>
+            <button className={styles.more} onClick={nextBook}>
+                <h3> Найти еще</h3>
+            </button>
         </>
 
     );

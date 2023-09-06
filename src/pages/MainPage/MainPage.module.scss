@@ -32,7 +32,7 @@
     border-right: 1px ;
     color:$color-black;
 }
-button {
+.searchBtn {
     width: auto;
     height: 100%;
     cursor: pointer;
@@ -50,4 +50,10 @@ button {
     gap: 15px;
     grid-template-columns: repeat(3, 1fr);
 }
-
+.more{
+    width: 200px;
+    padding: 15px;
+    background: $color-brown;
+    border-radius: 5px;
+    cursor: pointer;
+}
