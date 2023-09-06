@@ -6,10 +6,12 @@ import { API_KEY, cardPerPage } from '../../constants.ts'
 import { IBook } from '../../types/types.ts';
 
 const MainPage = () => {
+    const [isLoading, setIsLoading] = useState(false);
     const [search, setSearch] = useState("")
     const [booksData, setBooksData] = useState<Array<IBook>>([])
     const [curentBook, setCurentBook] = useState(0)
     const [category, setCategory] = useState('all')
+    const [totalBook, setTotalBook] = useState(0)
     const [sort, setSort] = useState('relevance')
 
 
@@ -18,24 +20,40 @@ const MainPage = () => {
         setCurentBook(booksData.length)
     }, [booksData])
 
-
+    const sortFetch = (sort: string) => {
+        setSort(sort)
+        fetchData()
+    }
     const nextBook = () => {
-        const url = `https://www.googleapis.com/books/v1/volumes?q=${search}&key=${API_KEY}&maxResults=${cardPerPage}&startIndex=${curentBook}&orderBy${sort}`;
+        setIsLoading(true); // Устанавливаем состояние загрузки в true
+        const url = `https://www.googleapis.com/books/v1/volumes?q=${search}&maxResults=${cardPerPage}&startIndex=${curentBook}&orderBy=${sort}&key=${API_KEY}`;
         axios
             .get(url)
-            .then(res => setBooksData(booksData.concat(res.data.items)))
-            // .then(res => console.log(booksData.concat(res.data)))
-
-            .catch(err => console.log(err));
+            .then(res => {
+                setBooksData(booksData.concat(res.data.items));
+                setIsLoading(false); // Устанавливаем состояние загрузки в false после получения данных
+            })
+            .catch(err => {
+                console.log(err);
+                setIsLoading(false); // Устанавливаем состояние загрузки в false в случае ошибки
+            });
     };
 
     const fetchData = () => {
         setBooksData([])
-        const url = `https://www.googleapis.com/books/v1/volumes?q=${search}&key=${API_KEY}&maxResults=${cardPerPage}&startIndex=0&orderBy${sort}`
+        setIsLoading(true);
+        const url = `https://www.googleapis.com/books/v1/volumes?q=${search}&maxResults=${cardPerPage}&startIndex=0&orderBy=${sort}&key=${API_KEY}`
         axios.get(url)
-            .then(res => setBooksData(res.data.items))
+            .then(res => {
+                setTotalBook(res.data.totalItems),
+                    setBooksData(res.data.items),
+                    setIsLoading(false)
+            })
             // .then(res => console.log(booksData.concat(res.data)))
-            .catch(err => console.log(err))
+            .catch(err => {
+                console.log(err),
+                    setIsLoading(false)
+            })
 
     }
     const searchBook = (e: React.KeyboardEvent) => {
@@ -70,12 +88,24 @@ const MainPage = () => {
                     <option value="Medical"> Медицина </option>
                     <option value="Poetry"> Поэзия</option>
                 </select>
-                <select name="sort" id="sort" defaultValue={sort} onChange={e => setSort(e.target.value)}>
+                <select name="sort" id="sort" defaultValue={sort} onChange={e => sortFetch(e.target.value)}>
                     <option value="relevance">по релевантности </option>
                     <option value="newest">по новизне</option>
                 </select>
             </div>
+            {isLoading && (
+                <div className={styles.loading}>
+                    <span>Loading...</span>
+                </div>
+            )}
+            {!isLoading && (
+                <h2>
+                    Найдено: {totalBook}
+                </h2>
+            )}
+
             <div className={styles.catalog}>
+
                 {category !== 'all' ?
                     booksData.filter((book) => book?.volumeInfo?.categories?.includes(category)).map((book: IBook) => {
                         return (
@@ -90,9 +120,12 @@ const MainPage = () => {
                     })
                 }
             </div>
-            <button className={styles.more} onClick={nextBook}>
-                <h3> Найти еще</h3>
-            </button>
+            {!isLoading && (
+                <button className={styles.more} onClick={nextBook}>
+                    <h3> Найти еще</h3>
+                </button>
+            )}
+
         </>
 
     );

@@ -15,13 +15,9 @@ const Card: FC<Book> = ({ book }) => {
                     alt="" className={styles.photo} />
 
                 <div className={styles.text}>
-                    {book.volumeInfo?.categories?.map((categories: string) => {
-                        return (
-                            <h3 className={styles.subtitle} key={categories}>
-                                {categories}
-                            </h3>
-                        )
-                    })}
+                    <h3 className={styles.subtitle}>
+                        {book?.volumeInfo?.categories ? book.volumeInfo.categories[0] : <br />}
+                    </h3>
 
                     <h2 className={styles.title}>
                         {book.volumeInfo?.title}
