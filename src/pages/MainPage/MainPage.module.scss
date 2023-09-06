@@ -1,0 +1,21 @@
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-direction: column;
+    background-image: url("../../assets/imgs/fon.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    padding: 15px;
+}
+button{
+    width: 20px;
+    height: 20px;
+}
+.searchIcon{
+width: 100%;
+height: 100%;
+}
