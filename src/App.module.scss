@@ -29,13 +29,30 @@
     font-weight: 700;
     src: url("./assets/fonts/Oswald/static/Oswald-Bold.ttf") format("ttf");
   }
-  
+
   $color-grey: rgba(107, 107, 107, 0.95);
+  $color-white: rgb(214, 214, 214);
+  $color-black: rgb(12, 4, 1);
+  $color-brown: rgb(29, 10, 3);
 
 *{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-family: "Oswald";
-    color: azure;
+    color: $color-white;
+    
+}
+h1{
+  text-shadow: 1px 1px 2px $color-black;
+}
+h2{
+  font-size: medium;
+}
+h3{
+  font-size: small;
+  font-style: italic ;
+}
+.App{
+  background:$color-black;
 }

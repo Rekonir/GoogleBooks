@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Card from '../../components/Card';
+import Card from '../../components/Card/Card.tsx';
 import styles from './MainPage.module.scss'
 import axios from 'axios';
 import { API_KEY } from '../../constants.ts'

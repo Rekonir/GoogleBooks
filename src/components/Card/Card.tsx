@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { IBook } from '../types/types';
-import styles from './Card/Card.module.scss'
+import { IBook } from '../../types/types';
+import styles from './Card.module.scss'
 
 interface Book {
     book: IBook
@@ -11,7 +11,7 @@ const Card: FC<Book> = ({ book }) => {
         <>
             <div className={styles.card}>
 
-                <img src={book?.volumeInfo?.imageLinks?.smallThumbnail ? book.volumeInfo.imageLinks.smallThumbnail : "../assets/imgs/withoutPhoto.jpg"}
+                <img src={book?.volumeInfo?.imageLinks?.smallThumbnail ? book.volumeInfo.imageLinks.smallThumbnail : "../src/assets/imgs/withoutPhoto.jpg"}
                     alt="" className={styles.photo} />
 
                 <div className={styles.text}>
