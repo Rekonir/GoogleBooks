@@ -1,32 +1,50 @@
-@import '../../App.module.scss';
+@import "../../App.module.scss";
 
-.page{
- display: flex;
- flex-direction: column;
- justify-content: center;
- align-items: center;
- padding: 50px 150px;
- width: 100%;
- gap: 50px;
+.page {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 50px 150px;
+    width: 100%;
+    gap: 50px;
 }
-.bookInfo{
+.bookInfo {
     -webkit-box-shadow: 0px 0px 8px 0px $color-brown;
-    -moz-box-shadow: 0px 0px 8px 0px $color-brown;
     box-shadow: 0px 0px 8px 0px $color-brown;
     padding: 15px;
     background: $color-brown;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
     flex-direction: row;
     gap: 15px;
     max-width: 1180px;
-    border-radius: 4px
+    border-radius: 4px;
 }
-.photo{
+.photo {
     width: 150px;
     height: auto;
 }
-.content{
+.content {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     gap: 5px;
 }

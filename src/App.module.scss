@@ -1,59 +1,59 @@
 @font-face {
-    font-display: swap;
-    font-family: "Oswald";
-    font-style: normal;
-    font-weight: 300;
-    src: url("./assets/fonts/Oswald/static/Oswald-Light.ttf") format("ttf");
-  }
-  
-  @font-face {
-    font-display: swap;
-    font-family: "Oswald";
-    font-style: normal;
-    font-weight: 400;
-    src: url("./assets/fonts/Oswald/static/Oswald-Regular.ttf") format("ttf");
-  }
-  
-  @font-face {
-    font-display: swap;
-    font-family: "Oswald";
-    font-style: normal;
-    font-weight: 600;
-    src: url("./assets/fonts/Oswald/static/Oswald-Semibold.ttf") format("ttf");
-  }
-  
-  @font-face {
-    font-display: swap;
-    font-family: "Oswald";
-    font-style: normal;
-    font-weight: 700;
-    src: url("./assets/fonts/Oswald/static/Oswald-Bold.ttf") format("ttf");
-  }
-
-  $color-grey: rgba(107, 107, 107, 0.95);
-  $color-white: rgb(214, 214, 214);
-  $color-black: rgb(12, 4, 1);
-  $color-brown: rgb(29, 10, 3);
-
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: "Oswald";
-    color: $color-white;
-    
+  font-display: swap;
+  font-family: "Oswald";
+  font-style: normal;
+  font-weight: 300;
+  src: url("./assets/fonts/Oswald/static/Oswald-Light.ttf") format("ttf");
 }
-h1{
+
+@font-face {
+  font-display: swap;
+  font-family: "Oswald";
+  font-style: normal;
+  font-weight: 400;
+  src: url("./assets/fonts/Oswald/static/Oswald-Regular.ttf") format("ttf");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Oswald";
+  font-style: normal;
+  font-weight: 600;
+  src: url("./assets/fonts/Oswald/static/Oswald-Semibold.ttf") format("ttf");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Oswald";
+  font-style: normal;
+  font-weight: 700;
+  src: url("./assets/fonts/Oswald/static/Oswald-Bold.ttf") format("ttf");
+}
+
+$color-grey: rgba(107, 107, 107, 0.95);
+$color-white: rgb(214, 214, 214);
+$color-black: rgb(12, 4, 1);
+$color-brown: rgb(29, 10, 3);
+
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: "Oswald";
+  color: $color-white;
+}
+h1 {
   text-shadow: 1px 1px 2px $color-black;
 }
-h2{
+h2 {
   padding: 10px 0;
   font-size: medium;
 }
-h3{
+h3 {
   font-size: small;
-  font-style: italic ;
+  font-style: italic;
 }
-body{
-  background:$color-black;
+body {
+  background: $color-black;
 }

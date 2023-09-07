@@ -1,11 +1,20 @@
-@import '../../App.module.scss';
+@import "../../App.module.scss";
 
 .header {
     width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     gap: 10px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     background-color: $color-grey;
     background-blend-mode: multiply;
@@ -15,41 +24,56 @@
     background-size: cover;
     padding: 15px;
 }
-.search{
+.search {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
     flex-direction: row;
     gap: 0;
     height: 25px;
-
 }
-.searchInputs{
+.searchInputs {
     height: 100%;
     border-radius: 15px 0% 0% 15px;
     padding: 5px;
-    border: 2px solid $color-grey ;
-    border-right: 1px ;
-    color:$color-black;
+    border: 2px solid $color-grey;
+    border-right: 1px;
+    color: $color-black;
 }
 .searchBtn {
     width: auto;
     height: 100%;
     cursor: pointer;
     border-radius: 0% 15px 15px 0%;
-    border: 2px solid $color-grey ;
-    border-left: 1px ;
+    border: 2px solid $color-grey;
+    border-left: 1px;
 }
 .searchIcon {
     width: 100%;
     height: 100%;
 }
-.container{
+.container {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
     justify-content: start;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     width: 100%;
-    
 }
-
