@@ -7,6 +7,7 @@ import Loading from '../../components/Loading/Loading.tsx';
 import Catalog from '../../components/Catalog/Catalog.tsx';
 import SelectorUI from '../../components/UI/selector/SelectorUI.tsx';
 import { useSelector } from 'react-redux';
+import BtnUI from '../../components/UI/btn/btnUI.tsx';
 
 const MainPage = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -86,9 +87,11 @@ const MainPage = () => {
                         Найдено: {totalBook}
                     </h2>
                     <Catalog booksData={booksData} />
-                    <button className={styles.more} onClick={nextBook}>
+
+                    <BtnUI onClick={nextBook}>
                         <h3> Найти еще</h3>
-                    </button>
+                    </BtnUI>
+
                 </div>
             )}
 

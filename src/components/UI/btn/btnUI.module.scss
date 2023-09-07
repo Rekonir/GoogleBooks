@@ -1,0 +1,9 @@
+@import '../../../App.module.scss';
+
+.btn{
+    width: 200px;
+    padding: 15px;
+    background: $color-brown;
+    border-radius: 5px;
+    cursor: pointer;
+}
