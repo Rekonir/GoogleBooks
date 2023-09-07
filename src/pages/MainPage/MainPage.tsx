@@ -23,31 +23,16 @@ const MainPage = () => {
         setCurentBook(booksData.length)
     }, [booksData])
 
-    const nextBook = () => {
-        setIsLoading(true);
-        const url = `https://www.googleapis.com/books/v1/volumes?q=${search}&maxResults=${cardPerPage}&startIndex=${curentBook}&orderBy=${storeState.sort}&key=${API_KEY}`;
-        axios
-            .get(url)
-            .then(res => {
-                setBooksData(booksData.concat(res.data.items));
-                setIsLoading(false);
-            })
-            .catch(err => {
-                console.log(err);
-                setIsLoading(false);
-                dispatch({ type: 'changeErrorCode', payload:  err.response.status })
-            });
-    };
-
     const fetchData = (startIndex = 0) => {
+        if (startIndex === 0) setBooksData([])
         setIsLoading(true);
         const url = `https://www.googleapis.com/books/v1/volumes?q=${search}&maxResults=${cardPerPage}&startIndex=${startIndex}&orderBy=${storeState.sort}&key=${API_KEY}`
         axios
             .get(url)
             .then(res => {
-                setTotalBook(res.data.totalItems),
-                    setBooksData(res.data.items),
-                    setIsLoading(false)
+                setTotalBook(res.data.totalItems);
+                startIndex === 0 ? setBooksData(res.data.items) : setBooksData(booksData.concat(res.data.items));
+                setIsLoading(false)
             })
             .catch(err => {
                 console.log(err),
@@ -56,13 +41,15 @@ const MainPage = () => {
             })
 
     }
+    const nextBook = () => {
+        fetchData(curentBook)
+    };
     const searchBookEnter = (e: React.KeyboardEvent) => {
         if (e.key === "Enter") {
-            searchBook()
+            fetchData()
         }
     }
     const searchBook = () => {
-        setBooksData([])
         fetchData()
     }
 
@@ -80,7 +67,7 @@ const MainPage = () => {
                         onChange={e => setSearch(e.target.value)}
                         onKeyDown={searchBookEnter}
                     />
-                    <button className={styles.searchBtn} onClick={() => fetchData()}>
+                    <button className={styles.searchBtn} onClick={searchBook}>
                         <img src="../../src/assets/imgs/search-svgrepo-com.svg" alt="" className={styles.searchIcon} />
                     </button>
                 </div>
