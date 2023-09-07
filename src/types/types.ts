@@ -15,3 +15,7 @@ interface imageLinks{
     smallThumbnail: string;
 
 }
+export interface IDefaultState{
+    category: string;
+    sort:string
+}

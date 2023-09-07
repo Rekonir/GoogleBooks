@@ -1,12 +1,17 @@
 import MainPage from "./pages/MainPage/MainPage"
 import styles from './App.module.scss'
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 
 function App() {
 
   return (
-    <div className={styles.App}>
-      <MainPage/>
-    </div>
+    <Provider store={store}>
+      <div className={styles.App}>
+        <MainPage />
+      </div>
+    </Provider>
+
   )
 }
 

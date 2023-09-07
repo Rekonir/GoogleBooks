@@ -1,6 +1,7 @@
 @import "../../App.module.scss";
 
 .card {
+    max-width: 250px;
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -13,6 +14,11 @@
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
+    transition: all 0.4s;
+    &:hover{
+        scale: 1.2;
+        transition: all 0.4s;
+    }
 }
 .photo {
     width: 130px;

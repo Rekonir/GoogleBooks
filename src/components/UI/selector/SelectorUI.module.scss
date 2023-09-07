@@ -1,0 +1,12 @@
+@import "../../../App.module.scss";
+
+select {
+    width: 200px;
+    padding: 5px;
+    border-radius: 5px;
+    color: $color-black;
+    cursor: pointer;
+}
+option {
+    color: $color-black;
+}
