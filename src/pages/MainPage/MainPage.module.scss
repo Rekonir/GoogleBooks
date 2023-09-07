@@ -48,6 +48,10 @@
     border: 2px solid $color-grey;
     border-right: 1px;
     color: $color-black;
+    -webkit-transition: all 0.2s ;
+    -o-transition: all 0.2s ;
+    transition: all 0.2s ;
+    outline: none;
 }
 .searchBtn {
     width: auto;

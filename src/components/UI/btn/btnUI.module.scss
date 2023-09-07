@@ -1,9 +1,18 @@
-@import '../../../App.module.scss';
+@import "../../../App.module.scss";
 
-.btn{
-    width: 200px;
+.btn {
     padding: 15px;
-    background: $color-brown;
-    border-radius: 5px;
+    font-size: 16px;
+    border-radius: 4px;
     cursor: pointer;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    background: $color-brown;
+    border: 1px solid $color-black;
+
+    &:hover {
+        scale: 1.1;
+        background-color: darken($color-brown, 10%);
+    }
 }

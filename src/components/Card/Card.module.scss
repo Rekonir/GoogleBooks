@@ -1,6 +1,7 @@
 @import "../../App.module.scss";
 
 .card {
+    min-height: 300px;
     max-width: 250px;
     display: -webkit-box;
     display: -ms-flexbox;
