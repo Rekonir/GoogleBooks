@@ -1,21 +1,21 @@
 import MainPage from "./pages/MainPage/MainPage"
 import styles from './App.module.scss'
 import { Provider } from 'react-redux';
-import { store } from './store/store';
-import { Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
+import { publicRoutes } from "./routes";
 
 function App() {
 
   return (
-    <Provider store={store}>
-      <Routes>
-        <div className={styles.App}>
+    <Routes>
+      {/* <div className={styles.App}>
           <MainPage />
-        </div>
-        
-      </Routes>
-    </Provider>
-
+        </div> */}
+      {publicRoutes.map(({ path, Component }) =>
+        <Route key={path} path={path} Component={Component} />
+      )}
+      <Route path='*' element={<Navigate to='/' />} />
+    </Routes>
   )
 }
 

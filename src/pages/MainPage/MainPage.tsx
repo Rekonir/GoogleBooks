@@ -18,7 +18,6 @@ const MainPage = () => {
 
     useEffect(() => {
         setCurentBook(booksData.length)
-        console.log(booksData)
     }, [booksData])
 
     const nextBook = () => {

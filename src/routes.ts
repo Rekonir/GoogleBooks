@@ -1,3 +1,4 @@
+import BookPage from "./pages/BookPage/BookPage";
 import MainPage from "./pages/MainPage/MainPage";
 
 export const publicRoutes = [
@@ -8,7 +9,7 @@ export const publicRoutes = [
     },
     {
         path: '/:id',
-        Component: MainPage,
+        Component: BookPage,
         breadcrumb: 'Страница книги'
     }
 ]
