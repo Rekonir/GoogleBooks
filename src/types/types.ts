@@ -18,5 +18,6 @@ interface imageLinks{
 }
 export interface IDefaultState{
     category: string;
-    sort:string
+    sort:string;
+    errorCode: number
 }

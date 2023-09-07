@@ -2,7 +2,8 @@ import { createStore } from "redux";
 
 const defaultState = {
     category: 'all',
-    sort: 'relevance'
+    sort: 'relevance',
+    errorCode: 200
 }
 interface IAction {
     type: string
@@ -17,6 +18,10 @@ export const storeReducer = (state = defaultState, action: IAction) => {
         case 'changeSort':
             return {
                 ...state, sort: action.payload as string
+            }
+        case 'changeErrorCode':
+            return {
+                ...state, errorCode: action.payload as number
             }
         default:
             return state

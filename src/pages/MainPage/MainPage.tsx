@@ -6,8 +6,9 @@ import { IBook, IDefaultState } from '../../types/types.ts';
 import Loading from '../../components/Loading/Loading.tsx';
 import Catalog from '../../components/Catalog/Catalog.tsx';
 import SelectorUI from '../../components/UI/selector/SelectorUI.tsx';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import BtnUI from '../../components/UI/btn/btnUI.tsx';
+import ErrorPage from '../ErrorPage/ErrorPage.tsx';
 
 const MainPage = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -15,6 +16,7 @@ const MainPage = () => {
     const [booksData, setBooksData] = useState<Array<IBook>>([])
     const [curentBook, setCurentBook] = useState(0)
     const [totalBook, setTotalBook] = useState(0)
+    const dispatch = useDispatch()
     const storeState = useSelector(state => state) as IDefaultState
 
     useEffect(() => {
@@ -33,14 +35,15 @@ const MainPage = () => {
             .catch(err => {
                 console.log(err);
                 setIsLoading(false);
+                dispatch({ type: 'changeErrorCode', payload:  err.response.status })
             });
     };
 
-    const fetchData = () => {
-        setBooksData([])
+    const fetchData = (startIndex = 0) => {
         setIsLoading(true);
-        const url = `https://www.googleapis.com/books/v1/volumes?q=${search}&maxResults=${cardPerPage}&startIndex=0&orderBy=${storeState.sort}&key=${API_KEY}`
-        axios.get(url)
+        const url = `https://www.googleapis.com/books/v1/volumes?q=${search}&maxResults=${cardPerPage}&startIndex=${startIndex}&orderBy=${storeState.sort}&key=${API_KEY}`
+        axios
+            .get(url)
             .then(res => {
                 setTotalBook(res.data.totalItems),
                     setBooksData(res.data.items),
@@ -48,15 +51,21 @@ const MainPage = () => {
             })
             .catch(err => {
                 console.log(err),
-                    setIsLoading(false)
+                    setIsLoading(false),
+                    dispatch({ type: 'changeErrorCode', payload: err.response.status })
             })
 
     }
-    const searchBook = (e: React.KeyboardEvent) => {
+    const searchBookEnter = (e: React.KeyboardEvent) => {
         if (e.key === "Enter") {
-            fetchData()
+            searchBook()
         }
     }
+    const searchBook = () => {
+        setBooksData([])
+        fetchData()
+    }
+
 
     return (
         <>
@@ -69,9 +78,9 @@ const MainPage = () => {
                         placeholder='Название книги'
                         value={search}
                         onChange={e => setSearch(e.target.value)}
-                        onKeyDown={searchBook}
+                        onKeyDown={searchBookEnter}
                     />
-                    <button className={styles.searchBtn} onClick={fetchData}>
+                    <button className={styles.searchBtn} onClick={() => fetchData()}>
                         <img src="../../src/assets/imgs/search-svgrepo-com.svg" alt="" className={styles.searchIcon} />
                     </button>
                 </div>
@@ -94,6 +103,9 @@ const MainPage = () => {
 
                 </div>
             )}
+            {storeState.errorCode >= 400 &&
+                <ErrorPage err={storeState.errorCode} />
+            }
 
 
         </>
