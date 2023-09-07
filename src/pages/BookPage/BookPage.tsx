@@ -21,8 +21,8 @@ const BookPage = () => {
         }
     }, [])
     return (
-        <>
-            <div className={styles.page}>
+        <div className={styles.page}>
+            <div className={styles.bookInfo}>
                 <img src={book?.volumeInfo?.imageLinks?.smallThumbnail ? book.volumeInfo.imageLinks.smallThumbnail : "../../assets/imgs/withoutPhoto.jpg"}
                     alt="" className={styles.photo} />
                 <div className={styles.content}>
@@ -53,7 +53,7 @@ const BookPage = () => {
                     <h3>На главную</h3>
                 </BtnUI>
             </Link>
-        </>
+        </div>
 
     );
 };
