@@ -20,7 +20,7 @@ const MainPage = () => {
     const storeState = useSelector(state => state) as IDefaultState
 
     useEffect(() => {
-        setCurentBook(booksData.length)
+        setCurentBook(booksData?.length)
     }, [booksData])
 
     const fetchData = (startIndex = 0) => {
@@ -92,6 +92,11 @@ const MainPage = () => {
             )}
             {storeState.errorCode >= 400 &&
                 <ErrorPage err={storeState.errorCode} />
+            }
+            {!booksData && totalBook === 0 &&
+                <div className={styles.container}>
+                    <h2>Ничего не нашлось</h2>
+                </div>
             }
 
 
