@@ -12,7 +12,7 @@ const Card: FC<Book> = ({ book }) => {
         <>
             <Link to={`/book/${book.id}`}>
                 <div className={styles.card}>
-                    <img src={book?.volumeInfo?.imageLinks?.smallThumbnail ? book.volumeInfo.imageLinks.smallThumbnail : "./src/assets/imgs/withoutPhoto.jpg"}
+                    <img src={book?.volumeInfo?.imageLinks?.smallThumbnail ? book.volumeInfo.imageLinks.smallThumbnail : "../../assets/imgs/withoutPhoto.jpg"}
                         alt="" className={styles.photo} />
                     <div className={styles.text}>
                         <h3 className={styles.subtitle}>
