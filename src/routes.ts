@@ -8,7 +8,7 @@ export const publicRoutes = [
         breadcrumb: 'Главная'
     },
     {
-        path: '/:id',
+        path: '/book/:id',
         Component: BookPage,
         breadcrumb: 'Страница книги'
     }
