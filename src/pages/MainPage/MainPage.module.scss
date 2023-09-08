@@ -54,12 +54,16 @@
     outline: none;
 }
 .searchBtn {
-    width: auto;
-    height: 100%;
+    width: 20px;
+    height: 25px;
     cursor: pointer;
     border-radius: 0% 15px 15px 0%;
     border: 2px solid $color-grey;
     border-left: 1px;
+    background-image: url('../../assets/imgs/search-svgrepo-com.svg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
 }
 .searchIcon {
     width: 100%;

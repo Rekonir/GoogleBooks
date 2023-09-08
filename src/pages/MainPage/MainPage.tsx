@@ -67,9 +67,7 @@ const MainPage = () => {
                         onChange={e => setSearch(e.target.value)}
                         onKeyDown={searchBookEnter}
                     />
-                    <button className={styles.searchBtn} onClick={searchBook}>
-                        <img src="../../assets/imgs/search-svgrepo-com.svg" alt="" className={styles.searchIcon} />
-                    </button>
+                    <button className={styles.searchBtn} onClick={searchBook} />
                 </div>
                 <SelectorUI type={'sort'} />
                 <SelectorUI type={'category'} />
@@ -80,7 +78,7 @@ const MainPage = () => {
             {!isLoading && totalBook > 0 && (
                 <div className={styles.container}>
                     <h2>
-                        Найдено: {totalBook}
+                        Всего найдено: {totalBook}
                     </h2>
                     <Catalog booksData={booksData} />
 
