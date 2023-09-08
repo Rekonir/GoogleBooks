@@ -23,7 +23,7 @@ const BookPage = () => {
     return (
         <div className={styles.page}>
             <div className={styles.bookInfo}>
-                <img src={book?.volumeInfo?.imageLinks?.smallThumbnail ? book.volumeInfo.imageLinks.smallThumbnail : "./src/assets/imgs/withoutPhoto.jpg"}
+                <img src={book?.volumeInfo?.imageLinks?.smallThumbnail ? book.volumeInfo.imageLinks.smallThumbnail : "../../assets/imgs/withoutPhoto.jpg"}
                     alt="" className={styles.photo} />
                 <div className={styles.content}>
                     <h2 className={styles.title}>
