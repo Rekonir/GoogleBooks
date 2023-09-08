@@ -8,7 +8,7 @@ import Catalog from '../../components/Catalog/Catalog.tsx';
 import SelectorUI from '../../components/UI/selector/SelectorUI.tsx';
 import { useDispatch, useSelector } from 'react-redux';
 import BtnUI from '../../components/UI/btn/btnUI.tsx';
-import ErrorPage from '../ErrorPage/ErrorPage.tsx';
+import Error from '../../components/Error/Error.tsx';
 
 const MainPage = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -32,7 +32,9 @@ const MainPage = () => {
             .then(res => {
                 setTotalBook(res.data.totalItems);
                 startIndex === 0 ? setBooksData(res.data.items) : setBooksData(booksData.concat(res.data.items));
-                setIsLoading(false)
+                setIsLoading(false);
+                dispatch({ type: 'changeErrorCode', payload: res.status })
+
             })
             .catch(err => {
                 console.log(err),
@@ -85,12 +87,9 @@ const MainPage = () => {
                     <BtnUI onClick={nextBook}>
                         <h3> Найти еще</h3>
                     </BtnUI>
-
                 </div>
             )}
-            {storeState.errorCode >= 400 &&
-                <ErrorPage err={storeState.errorCode} />
-            }
+            <Error />
             {!booksData && totalBook === 0 &&
                 <div className={styles.container}>
                     <h2>Ничего не нашлось</h2>
