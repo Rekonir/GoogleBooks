@@ -68,7 +68,7 @@ const MainPage = () => {
                         onKeyDown={searchBookEnter}
                     />
                     <button className={styles.searchBtn} onClick={searchBook}>
-                        <img src="/src/assets/imgs/search-svgrepo-com.svg" alt="" className={styles.searchIcon} />
+                        <img src="../../assets/imgs/search-svgrepo-com.svg" alt="" className={styles.searchIcon} />
                     </button>
                 </div>
                 <SelectorUI type={'sort'} />
