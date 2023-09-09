@@ -17,6 +17,10 @@
     padding: 50px 150px;
     width: 100%;
     gap: 50px;
+    @media (max-width: 500px) {
+       padding: 10px;
+
+    }
 }
 .bookInfo {
     -webkit-box-shadow: 0px 0px 8px 0px $color-brown;
@@ -35,7 +39,7 @@
     border-radius: 4px;
 }
 .photo {
-    width: auto;
+    width: 150px;
     height: auto;
 }
 .content {
