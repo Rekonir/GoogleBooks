@@ -5,6 +5,7 @@ import { IBook } from '../../types/types';
 import { API_KEY } from '../../constants';
 import styles from './BookPage.module.scss'
 import BtnUI from '../../components/UI/btn/btnUI';
+import { withoutPhoto } from '../../constants';
 
 const BookPage = () => {
     const { id } = useParams()
@@ -23,7 +24,7 @@ const BookPage = () => {
     return (
         <div className={styles.page}>
             <div className={styles.bookInfo}>
-                <img src={book?.volumeInfo?.imageLinks?.smallThumbnail ? book.volumeInfo.imageLinks.smallThumbnail : '../assets/imgs/withoutPhoto.jpg'}
+                <img src={book?.volumeInfo?.imageLinks?.smallThumbnail ? book.volumeInfo.imageLinks.smallThumbnail : withoutPhoto}
                     alt="" className={styles.photo} />
                 <div className={styles.content}>
                     <h2 className={styles.title}>
